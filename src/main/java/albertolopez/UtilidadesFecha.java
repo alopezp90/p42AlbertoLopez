@@ -20,18 +20,34 @@ public class UtilidadesFecha {
         return LocalDate.of(fecha.getYear(), fecha.getMonth(), fecha.getDayOfMonth());
     }
 
-    public static int diasMes(LocalDate fecha){
+    public static int diasMes(LocalDate fecha) {
         return fecha.getMonth().length(bisiesto(fecha));
     }
-                
+
     public static int diaSemana(LocalDate fecha) {
-        return fecha.getDayOfWeek().ordinal();
+        //return fecha.getDayOfWeek().ordinal(); no es exactamente lo q se pedia
+        switch (fecha.getDayOfWeek()) {
+            case SUNDAY:
+                return 0;
+            case MONDAY:
+                return 1;
+            case TUESDAY:
+                return 2;
+            case WEDNESDAY:
+                return 3;
+            case THURSDAY:
+                return 4;
+            case FRIDAY:
+                return 5;
+            default:
+                return 6;
+        }
     }
 
     public static void mostrarFechaLarga(LocalDate fecha) {
         Locale configSistema = Locale.getDefault();
         System.out.println(fecha.getDayOfWeek().getDisplayName(TextStyle.FULL, configSistema)
-                + " " + fecha.getDayOfMonth() 
+                + " " + fecha.getDayOfMonth()
                 + " de " + fecha.getMonth().getDisplayName(TextStyle.FULL, configSistema)
                 + " de " + fecha.getYear());
     }
